@@ -1,0 +1,17 @@
+
+server:
+  port: 8080
+spring:
+  application:
+  name: account-microservice
+  datasource:
+    url: jdbc:h2:mem:7e64e12f-f256-4d7f-8bfb-d6de7f9aa0af
+    username: SA
+    password: ''
+  h2:
+    console:
+      enabled: true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
