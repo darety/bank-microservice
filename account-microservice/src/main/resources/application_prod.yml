@@ -1,0 +1,15 @@
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+
+build:
+  version: "1.0"
+accounts:
+  message: "welcome"
+  contactDetail:
+    name: "durella prod lead"
+    email: "dray_@gmail.com"
+  onCallSupport:
+    - 912-541-4205
+    - 912-486-4028

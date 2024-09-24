@@ -1,6 +1,7 @@
 package com.olukotun.account.controller;
 
 import com.olukotun.account.constant.AccountConstant;
+import com.olukotun.account.dto.AccountContactInfoDto;
 import com.olukotun.account.dto.CustomerDto;
 import com.olukotun.account.dto.ErrorResponseDto;
 import com.olukotun.account.dto.ResponseDto;
@@ -14,6 +15,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
@@ -33,6 +36,11 @@ import org.springframework.web.context.request.WebRequest;
 public class AccountController {
 
     private final IAccountService accountService;
+    private final Environment environment;
+    private final AccountContactInfoDto accountContactInfoDto;
+
+    @Value("${build.version}")
+    private String buildVersion;
 
     @Operation(
             summary = "Create Account REST API",
@@ -140,6 +148,74 @@ public class AccountController {
                     .status(HttpStatus.EXPECTATION_FAILED)
                     .body(new ResponseDto(AccountConstant.STATUS_417, AccountConstant.MESSAGE_417_DELETE));
         }
+    }
+
+
+
+    @Operation(
+            summary = "Get build description",
+            description = "Get build descriptions"
+
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Request processed successfully"
+            ),
+            @ApiResponse(
+                    responseCode = "417",
+                    description = "Update operation failed"
+            )
+
+    })
+    @GetMapping("/version")
+    public ResponseEntity<String> getBuildInfo(){
+        return ResponseEntity.status(HttpStatus.OK).body(buildVersion);
+    }
+
+
+    @Operation(
+            summary = "Get build description",
+            description = "Get build descriptions"
+
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Request processed successfully"
+            ),
+            @ApiResponse(
+                    responseCode = "417",
+                    description = "Update operation failed"
+            )
+
+    })
+    @GetMapping("/java-version")
+    public ResponseEntity<String> getJavaVersion(){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(environment.getProperty("JAVA_HOME"));
+    }
+
+    @Operation(
+            summary = "Get build description",
+            description = "Get build descriptions"
+
+    )
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Request processed successfully"
+            ),
+            @ApiResponse(
+                    responseCode = "417",
+                    description = "Update operation failed"
+            )
+
+    })
+    @GetMapping("/contact-info")
+    public ResponseEntity<AccountContactInfoDto> getContactInfo(){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(accountContactInfoDto);
     }
 
 

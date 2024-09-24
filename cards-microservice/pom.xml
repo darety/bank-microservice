@@ -92,7 +92,7 @@
 				<version>3.4.3</version>
 				<configuration>
 					<to>
-						<image>olukol/${project.artifactId}:v3</image>
+						<image>olukol/${project.artifactId}:v6</image>
 					</to>
 				</configuration>
 			</plugin>

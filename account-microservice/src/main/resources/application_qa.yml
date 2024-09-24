@@ -1,0 +1,14 @@
+spring:
+  config:
+    activate:
+      on-profile: "qa"
+build:
+  version: "2.0"
+accounts:
+  message: "welcome"
+  contactDetail:
+    name: "qa team lead"
+    email: "prodemail"
+  onCallSupport:
+    - 912-541-4205
+    - 912-486-4028

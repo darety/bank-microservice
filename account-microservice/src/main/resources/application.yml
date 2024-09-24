@@ -15,3 +15,20 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  config:
+    import:
+     - "application_qa.yml"
+     - "application_prod.yml"
+  profiles:
+    active:
+      - "qa"
+build:
+  version: "3.0"
+accounts:
+  message: "welcome to local api"
+  contactDetail:
+    name: "oludamilare"
+    email: "olukotuno@gmail.com"
+  onCallSupport:
+   - 912-541-4205
+   - 912-486-4028
